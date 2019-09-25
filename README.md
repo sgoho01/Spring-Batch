@@ -175,9 +175,26 @@
 *※ Step으로 처리하는게 아니기 때문에 ExitStatus가 아닌 FlowExecutionStatus로 상태를 관리*
 
 
+---
+
+## 3. Spring Batch Scope & Job Parameter
+
+### 3-1. JobParameter와 Scope
+
+- Spring Batch에서는 외부 혹은 내부에서 파라미터를 받아 여러 Batch 컴포넌트에서 사용할수 있도록 지원  
+=> 이 파라미터를 Job Parameter라고 함
+- Job Parameter를 사용하기 위해선 항상 Spring Batch 전용 Scope를 선언  
+@StepScope 와 @JobScope 2가지 존재
+- 사용 시 SpEL로 선언하여 사용  
+`@Value("#{jobParameters[파라미터명]}")`
+
+...
 
 
+## 4. Chunk
 
+- Chunk란 데이터 덩어리로 작업 할 때 각 커밋 사이에 처리되는 row 수  
+즉, Chunk 지향 처리란 한 번에 하나씩 데이터를 읽어 Chunk라는 덩어리를 만든 뒤, Chunk 단위로 트랜잭션을 다루는 것을 의미
 
 
 
